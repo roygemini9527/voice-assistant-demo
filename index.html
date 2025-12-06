@@ -6705,6 +6705,18 @@ mg；6 歲以上未滿 12 歲兒童適用成人劑量 1/2、3 歲以上未滿
             recognition.onresult = function(event) {
                 const userText = event.results[0][0].transcript;
                 appendMessage('user', userText);
+                recognition.onresult = function(event) {
+        const userText = event.results[0][0].transcript;
+        appendMessage('user', userText);
+        
+        // ===================================================
+        // 🚨 故障排除：加入此行檢查 ASR 輸出
+        // ===================================================
+        alert("ASR 輸出文字: " + userText + " (長度: " + userText.length + ")");
+        
+        statusDisplay.textContent = '🧠 正在思考...';
+        callGeminiAPI(userText);
+    };
                 statusDisplay.textContent = '🧠 正在思考...';
                 callGeminiAPI(userText);
             };
